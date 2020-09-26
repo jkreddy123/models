@@ -98,7 +98,7 @@ install_python_libraries() {
   pip3 install matplotlib numpy scikit-image scipy
   local exit_code=$?
   handle_exit_code ${exit_code} "Unable to install at least one of: matplotlib numpy scikit-image scipy."
-  sudo apt-get -y install python3-tk
+  apt-get -y install python3-tk
   local exit_code=$?
   handle_exit_code ${exit_code} "Unable to install python3-tk."
 }
@@ -137,7 +137,7 @@ post_install_check() {
 
 install_delf() {
   # Orchestrates DELF package installation.
-  install_tensorflow
+  #install_tensorflow
   install_tf_slim
   download_protoc
   compile_delf_protos

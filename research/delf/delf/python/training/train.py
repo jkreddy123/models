@@ -243,7 +243,7 @@ def main(argv):
       """Train one batch."""
       images, labels = inputs
       # Temporary workaround to avoid some corrupted labels.
-      labels = tf.clip_by_value(labels, 0, model.num_classes)
+      labels = tf.clip_by_value(labels, 0, model.num_classes-1)
 
       global_step = optimizer.iterations
       tf.summary.image('batch_images', (images + 1.0) / 2.0, step=global_step)
@@ -325,7 +325,7 @@ def main(argv):
     def validation_step(inputs):
       """Validate one batch."""
       images, labels = inputs
-      labels = tf.clip_by_value(labels, 0, model.num_classes)
+      labels = tf.clip_by_value(labels, 0, model.num_classes-1)
 
       # Get descriptor predictions.
       blocks = {}
@@ -474,8 +474,8 @@ def main(argv):
             save_path = manager.save()
             logging.info('Saved (%d) at %s', global_step_value, save_path)
 
-            file_path = '%s/delf_weights' % FLAGS.logdir
-            model.save_weights(file_path, save_format='tf')
+            file_path = '%s/delf_weights.h5' % FLAGS.logdir
+            model.save_weights(file_path, save_format='h5')
             logging.info('Saved weights (%d) at %s', global_step_value,
                          file_path)
 
@@ -491,7 +491,9 @@ def main(argv):
             break
 
     logging.info('Finished training for %d steps.', max_iters)
-
+  file_path = '%s/delf_saved_model' % FLAGS.logdir
+  #model.save(file_path)
+  tf.saved_model.save(model, file_path)
 
 if __name__ == '__main__':
   app.run(main)

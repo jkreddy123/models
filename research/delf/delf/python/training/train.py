@@ -159,7 +159,7 @@ def main(argv):
   clip_val = tf.constant(10.0)
 
   if FLAGS.debug:
-    tf.config.run_functions_eagerly(True)
+    #tf.config.run_functions_eagerly(True)
     global_batch_size = 4
     max_iters = 100
     num_eval_batches = 1

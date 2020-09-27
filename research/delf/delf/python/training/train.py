@@ -160,10 +160,10 @@ def main(argv):
 
   if FLAGS.debug:
     #tf.config.run_functions_eagerly(True)
-    global_batch_size = 4
-    max_iters = 10
-    num_eval_batches = 1
-    save_interval = 1
+    global_batch_size = 32#4
+    max_iters = 500
+    num_eval_batches = 4#1
+    save_interval = 20
     report_interval = 1
 
   # Determine the number of classes based on the version of the dataset.

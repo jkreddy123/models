@@ -475,7 +475,7 @@ def main(argv):
             logging.info('Saved (%d) at %s', global_step_value, save_path)
 
             file_path = '%s/delf_weights.h5' % FLAGS.logdir
-            model.save_weights("gs://delgckpts/delf_weights.h5", save_format='h5')
+            model.save_weights(file_path, save_format='h5')
             logging.info('Saved weights (%d) at %s', global_step_value,
                          file_path)
 
@@ -493,7 +493,7 @@ def main(argv):
     logging.info('Finished training for %d steps.', max_iters)
   file_path = '%s/delf_saved_model' % FLAGS.logdir
   #model.save(file_path)
-  tf.saved_model.save(model, file_path)
+  tf.saved_model.save(model, "gs://delgckpts/delf_saved_model")
 
 if __name__ == '__main__':
   app.run(main)

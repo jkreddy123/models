@@ -235,7 +235,7 @@ def main(argv):
     # Setup checkpoint directory.
     checkpoint = tf.train.Checkpoint(optimizer=optimizer, model=model)
     manager = tf.train.CheckpointManager(
-        checkpoint, checkpoint_prefix, max_to_keep=1)
+        checkpoint, "gs://delgckpts/", max_to_keep=1)
 
     # ------------------------------------------------------------
     # Train step to run on one GPU.

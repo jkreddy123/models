@@ -392,8 +392,8 @@ def main(argv):
           logging.info('Done.')
         else:
           logging.info('Skip loading ImageNet pretrained weights.')
-        if FLAGS.debug:
-          model.backbone.log_weights()
+        #if FLAGS.debug:
+        #  model.backbone.log_weights()
 
         global_step_value = optimizer.iterations.numpy()
         while global_step_value < max_iters:

@@ -161,7 +161,7 @@ def main(argv):
   if FLAGS.debug:
     #tf.config.run_functions_eagerly(True)
     global_batch_size = 32#4
-    max_iters = 500
+    max_iters = 100
     num_eval_batches = 4#1
     save_interval = 20
     report_interval = 1

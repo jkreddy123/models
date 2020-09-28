@@ -124,7 +124,7 @@ class _ExtractModule(tf.Module):
         lambda x: self._model.backbone.build_call(x, training=False),
         multi_scale_pool_type=self._multi_scale_pool_type,
         normalize_global_descriptor=self._normalize_global_descriptor)
-
+    print("inside ExtractFeatures called")
     named_output_tensors = {}
     if self._multi_scale_pool_type == 'None':
       named_output_tensors['global_descriptors'] = tf.identity(

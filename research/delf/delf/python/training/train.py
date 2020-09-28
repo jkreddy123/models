@@ -474,8 +474,8 @@ def main(argv):
             save_path = manager.save()
             logging.info('Saved (%d) at %s', global_step_value, save_path)
 
-            file_path = '%s/delf_weights.h5' % FLAGS.logdir
-            model.save_weights(file_path, save_format='h5')
+            file_path = '%s/delf_weights' % FLAGS.logdir
+            model.save_weights(file_path, save_format='tf')
             logging.info('Saved weights (%d) at %s', global_step_value,
                          file_path)
 

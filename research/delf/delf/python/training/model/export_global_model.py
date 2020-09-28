@@ -164,16 +164,17 @@ def main(argv):
                           input_scales_tensor, FLAGS.delg_global_features,
                           FLAGS.delg_gem_power, FLAGS.delg_embedding_layer_dim)
 
-  # Load the weights.
-  checkpoint_path = FLAGS.ckpt_path
-  module.LoadWeights(checkpoint_path)
-  print('Checkpoint loaded from ', checkpoint_path)
-
   # Save the module
   if FLAGS.input_scales_list is None:
     served_function = module.ExtractFeatures
   else:
     served_function = module.ExtractFeaturesFixedScales
+
+    # Load the weights.
+  checkpoint_path = FLAGS.ckpt_path
+  module.LoadWeights(checkpoint_path)
+  print('Checkpoint loaded from ', checkpoint_path)
+
 
   tf.saved_model.save(
       module, export_path, signatures={'serving_default': served_function})
